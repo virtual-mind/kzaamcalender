@@ -1,0 +1,39 @@
+{
+  "manifest_version": 2,
+  "name": "kzaam App",
+  "description": "A simple extension that allows you to schedule Kzaam videoconferencing.",
+  "version": "0.2.8",
+  "minimum_chrome_version": "34",
+  "icons": {
+    "16": "klogo-16x16.png",
+    "48": "klogo-48x48.png",
+    "128": "klogo-128x128.png"
+  },
+  "permissions": [
+      "https://calendar.google.com/*"
+  ],
+  "externally_connectable": {
+      "matches": [
+        "*://app.kzaam.com/*"
+      ]
+  },
+  "content_scripts": [
+    {
+      "matches": ["https://calendar.google.com/calendar/*", "https://outlook.live.com/owa/*"],
+      "js": ["jquery.js", "RandomUtil.js", "RoomnameGenerator.js", "kzaam-calendar.js"],
+      "css": ["/css/all.css"],
+      "all_frames" : false,
+      "run_at" : "document_end"
+    }
+  ],
+  "web_accessible_resources": [
+    "klogo-48x48.png",
+    "klogo-white-48x48.png",
+    "klogo-blue.svg",
+    "klogo-grey.svg"
+  ],
+  "browser_action": {
+    "default_title": "Create Kzaam Videoconferencing",
+    "default_popup": "popup.html"
+  }
+}
